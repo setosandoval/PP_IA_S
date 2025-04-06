@@ -1,0 +1,10 @@
+{
+    "users": [
+      { "studentNumber": "2017191395", "password": "miconstrasena" },
+      { "studentNumber": "04033366", "password": "otraConstrasena" },
+      { "studentNumber": "04044477", "password": "unacontrasena" },
+      { "studentNumber": "202014193", "password": "cjcarrascal" },
+      { "studentNumber": "1", "password": "1" }
+    ]
+  }
+  

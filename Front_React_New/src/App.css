@@ -1,0 +1,491 @@
+.main {
+  display: flex;
+  margin: 20px;
+  height: 90vh;
+  width: 90%;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 7px;
+  align-self: flex-start;
+}
+
+h1 {
+  margin: 10px;
+  font-size: 40px;
+  color: rgb(1, 1, 59);
+}
+
+h2 {
+  font-size: 25px;
+  color: rgb(1, 1, 59);
+}
+
+h3 {
+  margin-right: 80px;
+}
+.search {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  justify-content: space-between;
+}
+
+.search input {
+  flex-grow: 1; /* Faire en sorte que le champ de recherche occupe tout l'espace disponible */
+}
+
+.answer-container{
+  width: 80%;
+}
+
+.history-container{
+  display:flex;
+  background-color: #f0f0f0;
+}
+.answer-text {
+  margin: 20px;
+  font-size: 18px;
+  color: #333; /* Couleur du texte */
+  background-color: #f0f0f0; /* Couleur de fond */
+  padding: 10px; /* Espacement intérieur */
+  border: 1px solid #ccc; /* Bordure */
+  border-radius: 5px; /* Coins arrondis */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  margin-top: 20px; /* Marge supérieure */
+  max-width: 90%; /* Largeur maximale */
+}
+
+.search-button {
+  background-color: #156752;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+  align-self: stretch;
+  position: relative;
+}
+
+.search-button:hover {
+  background-color: #51a66b; /* Couleur de fond au survol (bleu plus sombre) */
+}
+
+@media screen and (max-width: 768px) {
+  .search-button {
+    width: 100%; /* Set width to 100% on smaller screens */
+    max-width: 200px; /* Set maximum width to 200px */
+    height: auto; /* Allow height to adjust based on content */
+  }
+}
+
+
+.newChat-button{
+  background-color: #156752; /* Green */
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 0px;
+  width: 120px; /* Fixed width */
+  height: 40px; /* Fixed height */
+}
+
+.newChat-button:hover {
+  background-color: #51a66b; /* Couleur de fond au survol (bleu plus sombre) */
+}
+
+
+.delete-button {
+  background-color: #156752; /* Green */
+  margin-top: 2px;
+  margin-right: 70px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: auto;
+  width: 90; /* Fixed width */
+  height: 25; /* Fixed height */
+}
+
+.delete-button:hover {
+  background-color: #51a66b; /* Couleur de fond au survol (bleu plus sombre) */
+}
+
+@media screen and (max-width: 768px) {
+  .delete-button {
+    width: 100%; /* Set width to 100% on smaller screens */
+    max-width: 200px; /* Set maximum width to 200px */
+    height: auto; /* Allow height to adjust based on content */
+  }
+}
+
+
+.login-button {
+  background-color: #156752; /* Green */
+  border: none;
+  border-radius: 5px;
+  margin-top: 2%;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  align-self: center;
+}
+
+.login-button:hover {
+  background-color: #51a66b; /* Couleur de fond au survol (bleu plus sombre) */
+}
+
+.logout-button {
+  background-color: #156752;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 0;
+  margin-left:auto;
+}
+.logout-button:hover {
+  background-color: #51a66b; /* Couleur de fond au survol (bleu plus sombre) */
+}
+
+
+.saveHistory-button {
+  background-color: #156752;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 2px;
+  margin-left:auto;
+}
+
+.saveHistory-button:hover {
+  background-color: #51a66b; /* Couleur de fond au survol (bleu plus sombre) */
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.button-container {
+  display: flex; /* Use flexbox */
+  justify-content: flex-end; /* Center horizontally */
+}   
+
+.d-table {
+  display:table;
+}
+
+.d-table-cell {
+  display:table-cell;
+}
+
+.w-100 {
+  width: 89%;
+}
+
+.tar {
+  text-align: right;
+}
+
+.history-button{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 5px;
+  max-width: 95%;
+
+  background-color: #9e9d9d;; /* Green */
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+  align-self: flex-end;
+  position: relative;
+}
+
+.history-button:hover {
+  background-color: #7c7b7b;
+  /* Color on hover */
+}
+
+.selected-history-button {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 5px;
+  max-width: 95%;
+
+  background-color: #343434;; /* Green */
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+  align-self: flex-end;
+  position: relative;
+}
+.selected-history-button:hover {
+  background-color: #191919;
+}
+
+.loading-spinner {
+  /* Position the spinner at the center of the button */
+  position: absolute;
+  top: 25%; /* Place spinner vertically at 50% */
+  left: 25%; /* Place spinner horizontally at 50% */
+  transform: translate(-50%, -50%); /* Adjust position to center */
+
+  /* Define the size, color, and animation */
+  width: 12px;
+  height: 12px;
+  border: 4px solid rgba(6, 32, 5, 0.3); /* Color with opacity */
+  border-top-color: #59c80f; /* Color of the spinner */
+  border-radius: 50%; /* Make it a circle */
+  animation: rotate 1s linear infinite; /* Apply the rotation animation */
+}
+
+.history-panel {
+  margin-bottom: 20px; /* Marge en bas pour séparer l'historique de la barre de recherche */
+  color: #333; /* Couleur du texte */
+  background-color: #f0f0f0; /* Couleur de fond */
+  padding: 10px; /* Espacement intérieur */
+  border: 1px solid #ccc; /* Bordure */
+  border-radius: 5px; /* Coins arrondis */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  
+  width: 80vw; /* Take up 100% of the viewport width */
+  height: 60vh; /* Take up 100% of the viewport height */
+  flex-grow: 0.8; 
+}
+
+.history-scroll {
+  max-height: 100%; /* Hauteur maximale de la zone de défilement */
+  overflow-y: auto; /* Activer le défilement vertical lorsque le contenu dépasse la hauteur maximale */
+}
+.messages {
+  display: flex;
+  flex-direction: column;
+  /* Add this line to align items to the end (right) */
+  justify-content: flex-end;
+}
+
+.container{
+  display:flex;
+  background-color:  #ffffff;  /* Couleur de fond */
+  width: 80vw; /* Take up 100% of the viewport width */
+  height: 80vh; /* Take up 100% of the viewport height */
+}
+
+.left{
+  width: 20%;
+  margin-right: 10px;
+}
+
+.right{
+  width: 70%;
+  align-self: right;
+}
+
+/* Error Modal Styles */
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+.modal-content {
+  background-color: #fefefe; /* White background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow */
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+}
+li {
+  list-style-type: none;
+}
+
+.whatsapp-bubble {
+  list-style: none;
+  max-width: 90%; /* Adjust the maximum width as needed */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  white-space: pre-wrap; /* Preserves both \n and \t */
+  background-color: #ffffff; /* Light green background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  
+  color: rgb(0, 0, 0);
+  display: inline-block; /* Ensure inline display for dynamic width */
+}
+.whatsapp-bubble.send {
+  max-width: 80%; /* Adjust the maximum width as needed */
+  background-color: #59c80f85; /* White background color for received messages */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  color: black;
+  margin-left: auto; 
+  margin-right: 5%;
+}
+
+.whatsapp-bubble.received {
+  max-width: 80%; /* Adjust the maximum width as needed */
+  background-color: #ffffff; /* White background color for received messages */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  color: black;
+  margin-right: auto; 
+  margin-left: 0;
+}
+
+.chatbot-image {
+  max-width: 80%; /* Adjust the maximum width */
+  width: auto;       /* Maintain aspect ratio */
+  height: auto;      /* Maintain aspect ratio */
+  border-radius: 8px; /* Optional: Rounded corners */
+  margin: 5px 0;     /* Optional: Spacing around the image */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  
+}
+
+.container-form{
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+#msform {
+  text-align: center;
+  position: relative;
+  margin-top: 30px;
+}
+
+#msform fieldset {
+  background: white;
+  border: 0 none;
+  border-radius: 0px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 80%;
+  margin: 0 10%;
+
+  /*stacking fieldsets above each other*/
+  position: relative;
+}
+
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+  display: none;
+}
+#msform input, #msform textarea {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 13px;
+}
+
+#msform input:focus, #msform textarea:focus {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  border: 1px solid #ee0979;
+  outline-width: 0;
+  transition: All 0.5s ease-in;
+  -webkit-transition: All 0.5s ease-in;
+  -moz-transition: All 0.5s ease-in;
+  -o-transition: All 0.5s ease-in;
+}
