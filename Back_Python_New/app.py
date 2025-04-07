@@ -10,6 +10,16 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from Prompt_Completion_V00 import Preguntas  # Debe tener 'week' en cada pregunta
 
+##### PRUEBA
+import shutil
+import pypandoc
+
+# Verifica si el ejecutable de pandoc está disponible
+if not shutil.which("pandoc"):
+    print("Pandoc no encontrado, descargando con pypandoc...")
+    pypandoc.download_pandoc()
+##### 
+
 
 
 app = Flask(__name__, static_folder='react_build')
