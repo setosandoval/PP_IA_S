@@ -11,13 +11,14 @@ from flask_cors import CORS
 from Prompt_Completion_V00 import Preguntas  # Debe tener 'week' en cada pregunta
 
 ##### PRUEBA
-import shutil
 import pypandoc
 
-# Verifica si el ejecutable de pandoc está disponible
-if not shutil.which("pandoc"):
-    print("Pandoc no encontrado, descargando con pypandoc...")
+try:
+    pandoc_path = pypandoc.get_pandoc_path()
+except OSError:
+    print("Pandoc no encontrado, descargando...")
     pypandoc.download_pandoc()
+    pandoc_path = pypandoc.get_pandoc_path()
 ##### 
 
 
@@ -28,6 +29,25 @@ CORS(app)
 # ---------------------------------------------------------------------------------
 # Ruta opcional para convertir un archivo .tex completo a HTML (vía Pandoc)
 # ---------------------------------------------------------------------------------
+##### PRUEBA
+@app.route('/api/convert_latex', methods=['GET'])
+def convert_latex_to_html():
+    try:
+        import pypandoc
+        pandoc_path = pypandoc.get_pandoc_path()
+
+        tex_path = os.path.join(os.getcwd(), "Preguntas.tex")
+        html_path = os.path.join(os.getcwd(), "Preguntas.html")
+
+        subprocess.run([pandoc_path, tex_path, "-o", html_path], check=True)
+
+        with open(html_path, 'r', encoding='utf-8') as f:
+            html_content = f.read()
+        return jsonify({"html": html_content})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+'''
 @app.route('/api/convert_latex', methods=['GET'])
 def convert_latex_to_html():
     try:
@@ -41,6 +61,7 @@ def convert_latex_to_html():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+'''
 # ---------------------------------------------------------------------------------
 # Variables globales
 # ---------------------------------------------------------------------------------
@@ -156,8 +177,33 @@ def tail_message():
         f"\n\n¿ Desea reiniciar un quiz ?"
     )
 
+###### PRUEBA
+def convert_latex_string_to_html(latex_str):
+    import tempfile
+    import pypandoc
+    try:
+        pandoc_path = pypandoc.get_pandoc_path()
+
+        with tempfile.NamedTemporaryFile(suffix=".tex", delete=False) as tmp_tex:
+            tmp_tex.write(latex_str.encode('utf-8'))
+            tmp_tex_path = tmp_tex.name
+
+        tmp_html_path = tmp_tex_path.replace(".tex", ".html")
+
+        subprocess.run([pandoc_path, tmp_tex_path, "-o", tmp_html_path], check=True)
+
+        with open(tmp_html_path, 'r', encoding='utf-8') as f:
+            html_content = f.read()
+
+        os.remove(tmp_tex_path)
+        os.remove(tmp_html_path)
+
+        return html_content
+    except Exception as e:
+        return f"<p>Error al convertir LaTeX: {str(e)}</p>"
 
 
+'''
 def convert_latex_string_to_html(latex_str):
     """
     Convierte un string LaTeX a HTML usando Pandoc de forma temporal.
@@ -182,6 +228,7 @@ def convert_latex_string_to_html(latex_str):
         return html_content
     except Exception as e:
         return f"<p>Error al convertir LaTeX: {str(e)}</p>"
+'''
 
 def get_available_temas(week):
     """
