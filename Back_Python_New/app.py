@@ -181,38 +181,28 @@ def tail_message():
     )
 
 def convert_latex_string_to_html(latex_str):
-    """
-    Convierte un string LaTeX a HTML usando Pandoc de forma temporal.
-    Retorna el HTML como string.
-    """
+    import tempfile
+    import pypandoc
     try:
+        pandoc_path = pypandoc.get_pandoc_path()
+
         with tempfile.NamedTemporaryFile(suffix=".tex", delete=False) as tmp_tex:
             tmp_tex.write(latex_str.encode('utf-8'))
             tmp_tex_path = tmp_tex.name
 
         tmp_html_path = tmp_tex_path.replace(".tex", ".html")
 
-        # Ejecutar pandoc y capturar errores
-        result = subprocess.run(
-            ["pandoc", tmp_tex_path, "-o", tmp_html_path], 
-            capture_output=True, 
-            text=True, 
-            check=False
-        )
-        
-        if result.returncode != 0:
-            return f"<p>Error al convertir LaTeX: {result.stderr}</p>"
+        subprocess.run([pandoc_path, tmp_tex_path, "-o", tmp_html_path], check=True)
 
         with open(tmp_html_path, 'r', encoding='utf-8') as f:
             html_content = f.read()
 
-        # Limpieza de archivos temporales
         os.remove(tmp_tex_path)
         os.remove(tmp_html_path)
 
         return html_content
     except Exception as e:
-        return f"<p>Error al convertir LaTeX: {str(e)}</p><p>Texto original: {latex_str}</p>"
+        return f"<p>Error al convertir LaTeX: {str(e)}</p>"
 
 def get_available_temas(week):
     """
