@@ -382,7 +382,7 @@ def receive_question():
                     f"Temas: {temas_str}\n\n"
                     f"Dificultades: {difs_str}\n\n"
                     "Ejemplo: lógica, conjuntos 2\n\n"
-                    "Por favor, intenta nuevamente con el formato correcto."
+                    "Por favor, intenta nuevamente con el formato correcto. Escribe con tildes las palabras cuando corresponda."
                 )
                 return jsonify({'message': {'id': q_id, 'responseStudent': responseStudent, 'responseChatbot': msg}})
             
@@ -410,7 +410,7 @@ def receive_question():
                     f"Temas: {temas_str}\n\n"
                     f"Dificultades: {difs_str}\n\n"
                     "Ejemplo: lógica, conjuntos 2\n\n"
-                    "Por favor, intenta nuevamente con el formato correcto."
+                    "Por favor, intenta nuevamente con el formato correcto. Escribe con tildes las palabras cuando corresponda."
                 )
                 return jsonify({'message': {'id': q_id, 'responseStudent': responseStudent, 'responseChatbot': msg}})
 
