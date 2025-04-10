@@ -1,10 +1,21 @@
 {
-    "users": [
-      { "studentNumber": "2017191395", "password": "miconstrasena" },
-      { "studentNumber": "04033366", "password": "otraConstrasena" },
-      { "studentNumber": "04044477", "password": "unacontrasena" },
-      { "studentNumber": "202014193", "password": "cjcarrascal" },
-      { "studentNumber": "1", "password": "1" }
-    ]
-  }
-  
+  "users": [
+    { "studentNumber": "1", "password": "1" },
+    { "studentNumber": "202014193", "password": "202014193" }, 
+    { "studentNumber": "202028276", "password": "202028276" }, 
+    { "studentNumber": "79982206", "password": "79982206" }, 
+    { "studentNumber": "9421642", "password": "9421642" },
+    { "studentNumber": "201122879", "password": "201122879" }, 
+    { "studentNumber": "199421642", "password": "199421642" }, 
+    { "studentNumber": "201728738", "password": "201728738" }, 
+    { "studentNumber": "201812793", "password": "201812793" }, 
+    { "studentNumber": "201922120", "password": "201922120" }, 
+    { "studentNumber": "201122879", "password": "201122879" }, 
+    { "studentNumber": "201424109", "password": "201424109" }, 
+    { "studentNumber": "202322453", "password": "202322453" }, 
+    { "studentNumber": "202320223", "password": "202320223" }, 
+    { "studentNumber": "202212343", "password": "202212343" }, 
+    { "studentNumber": "202122428", "password": "202122428" }, 
+    { "studentNumber": "202214601", "password": "202214601" } 
+  ]
+}
