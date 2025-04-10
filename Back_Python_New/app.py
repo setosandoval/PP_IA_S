@@ -260,7 +260,7 @@ def update_question(success_fail, pid):
     - Si una pregunta se falla, sigue disponible.
     """
     global selected_theme, user_week, record
-    temas_seleccionados = set(tema.strip() for tema in selected_theme.split(","))  # Limpiamos espacios
+    temas_seleccionados = set(tema.strip() for tema in selected_theme.split(","))
 
     # Construir una lista de todas las preguntas disponibles (las que NO han sido acertadas)
     available_questions = [
@@ -506,14 +506,14 @@ def receive_question():
 
         # 4. Evaluar la respuesta a una pregunta
         # Verificamos si la pregunta es un HTML (enunciado de ejercicio)
-        if "<html" in question_txt or "<p>" in question_txt:
+        if "<html" in question_txt or "<p>" in question_txt or question_txt.startswith("<"):
             # Es una pregunta con formato HTML (enunciado)
             if current_question_responded:
                 # Si ya respondió a esta pregunta, probablemente sea un error de UI
-                responseChatbot = "Ya has respondido a esta pregunta. ¿Desea Continuar? (si/no)"
+                responseChatbot = "Ya has respondido a esta pregunta. ¿Desea Continuar? (sí/no)"
             else:
                 info = call_question(inicializador_id)
-                # Chequeo de acierto para respuestas de opción múltiple
+                # Chequeo de acierto
                 normalized_response = normalize_answer(responseStudent)
                 normalized_correct = [normalize_answer(r) for r in info['res']]
                 
@@ -535,6 +535,9 @@ def receive_question():
                 
                 # Marcar como respondida para evitar respuestas duplicadas
                 current_question_responded = True
+                
+                # Añadir al registro TANTO las correctas como incorrectas
+                record.append((inicializador_id, success_fail))
                 
                 responseChatbot = success_message() if success_fail else fail_message()
             
