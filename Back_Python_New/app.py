@@ -116,15 +116,15 @@ def load_history():
 def fail_message():
     return (
         "Se ha equivocado en la elección de la respuesta correcta.\n\n"
-        "¿Desea continuar con el mismo tema?\n\n"
-        "Escriba sí para continuar con el mismo tema o no para elegir otro tema."
+        "¿Desea continuar con el mismo tema, elegir otro tema, o finalizar?\n\n"
+        "Escriba 'si' para continuar con el mismo tema, 'no' para elegir otro tema, o 'finalizar' para terminar."
     )
 
 def success_message():
     return (
         "Ha acertado en la elección de la respuesta correcta. \n\n"
         "¿Desea continuar con el mismo tema?\n\n"
-        "Escriba sí para continuar con el mismo tema o no para elegir otro tema."
+        "Escriba 'si' para continuar con el mismo tema, 'no' para elegir otro tema, o 'finalizar' para terminar."
     )
 
 def tail_message():
@@ -446,7 +446,7 @@ def receive_question():
             return jsonify({'message': {'id': q_id, 'responseStudent': responseStudent, 'responseChatbot': responseChatbot}})
 
         # 3. Manejo de "¿Desea Continuar?" o "¿Desea reiniciar?"
-        if "¿Desea continuar con el mismo tema?" in question_txt:
+        if "¿Desea continuar con el mismo tema?" in question_txt or "¿Desea continuar con el mismo tema, elegir otro tema, o finalizar?" in question_txt:
             # Respuesta después de un fallo
             resp_normalizada = responseStudent.lower().strip()
             if resp_normalizada in ["si", "sí", "yes", "s"]:
@@ -470,12 +470,15 @@ def receive_question():
                     "Elige un tema y una dificultad dentro de la lista para continuar el quiz:\n\n"
                     f"Temas:\n{temas_str}\n\n"
                     f"Dificultades: {difs_str}\n\n"
-                    "Tú respuesta debe ser: tema dificultad (ej: lógica 2)\n\n"
-                    "Para múltiples temas: lógica, conjuntos 2\n\n"
+                    "Tu respuesta debe ser: tema dificultad (ej: lógica 2)\n"
+                    "Para múltiples temas: lógica, conjuntos 2\n"
                     "Por favor escribe con tildes las palabras cuando corresponda."
                 )
+            elif resp_normalizada in ["finalizar", "terminar", "fin", "salir", "exit"]:
+                # Finalizar el quiz
+                responseChatbot = tail_message()
             else:
-                responseChatbot = "No entendí tu respuesta. ¿Desea continuar con el mismo tema? (sí/no)"
+                responseChatbot = "No entendí tu respuesta. ¿Desea continuar con el mismo tema (sí), elegir otro tema (no), o finalizar?"
 
             resp = {
                 'id': q_id,
@@ -490,7 +493,7 @@ def receive_question():
                 reset_global_state()
                 responseChatbot = "reinit"
             elif resp_normalizada in ["no", "n"]:
-                responseChatbot = "Gracias por usar PP-BOT. ¡Hasta pronto!"
+                responseChatbot = os.path.join('react_build','static', 'Images', 'exit.png')
             else:
                 responseChatbot = "No entendí tu respuesta. ¿Desea reiniciar un quiz? (sí/no)"
 
